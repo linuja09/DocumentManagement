@@ -13,9 +13,14 @@ export class LoginComponent implements OnInit {
     password: null
   }
 
+  public error = null;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  handleError(error) {
+    this.error = error.error.error;
   }
 
   handleLogin() {
@@ -24,7 +29,7 @@ export class LoginComponent implements OnInit {
         console.log(response)
       },
       (error) => {
-        console.log(error)
+        this.handleError(error)
       }
 
     )
