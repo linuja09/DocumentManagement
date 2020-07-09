@@ -1,5 +1,5 @@
+import { SignupService } from './../../Services/signup.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -13,11 +13,16 @@ export class SignupComponent implements OnInit {
     password
     password_confirmation
 
-  public error = [];
-  constructor(private http: HttpClient) { }
+  public error_name = null;
+  public error_email = null;
+  public error_password = null;
+
+  constructor(private Signup : SignupService) { }
 
   handleError(error) {
-    this.error = error.error.errors;
+    this.error_name = error.error.errors.name;
+    this.error_email = error.error.errors.email;
+    this.error_password = error.error.errors.password;
   }
 
   load() {
@@ -36,7 +41,7 @@ export class SignupComponent implements OnInit {
 
     console.log(this.name);
 
-    this.http.post('http://localhost:8000/api/signup', temp).subscribe(
+    this.Signup.signup(temp).subscribe(
       (response) => {
         console.log(response)
       },

@@ -1,3 +1,4 @@
+import { SignupService } from './Services/signup.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -30,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

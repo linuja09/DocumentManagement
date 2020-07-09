@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\User;
+use Log;
 
 class AuthController extends Controller
 {
