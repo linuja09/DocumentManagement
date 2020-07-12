@@ -13,6 +13,8 @@ Route::group([
     Route::post('me', 'AuthController@me');
     Route::post('resetPasswordEmail', 'ResetPasswordController@sendResetPasswordEmail');
     Route::post('resetPassword', 'ResetPasswordController@resetPassword');
-    Route::post('uploadFile', 'FileUploadController@uploadFiles');
+    Route::post('uploadFile', 'DocumentController@store');
 
+    Route::resource('documents', 'DocumentController');
+    Route::get('documents/{uuid}/download', 'DocumentController@download')->name('documents.download');
 });

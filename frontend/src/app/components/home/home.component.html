@@ -28,12 +28,8 @@
 
 
     <div class="form-container">
-      <form  #uploadForm=ngForm  (ngSubmit)="handleFileUpload()" enctype='multipart/form-data'>
+      <form  #uploadForm=ngForm  (ngSubmit)="handleFileUpload()" method="POST" enctype="multipart/form-data">
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="fileName">File Name</label>
-            <input name="fileName" id="fileName" type="text" class="form-control" [(ngModel)]="fileName" required>
-          </div>
           <div class="form-group col-md-6">
             <label for="fileType">File Type</label>
             <input name="fileType" id="fileType" type="text" class="form-control"[(ngModel)]="fileType" required>
@@ -45,9 +41,11 @@
         </div>
         <div class="form-group">
           <label for="customFile">Upload the file</label>
+          <p>{{fileContent}}</p>
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" [(ngModel)]="fileContent" required name="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+            <input type="file" name="customFile"  (change)="onSelectImage($event)"  />
+            <!-- <input type="file" class="custom-file-input" id="customFile" [(ngModel)]="fileContent" required name="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label> -->
           </div>
         </div>
 
