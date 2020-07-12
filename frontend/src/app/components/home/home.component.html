@@ -32,9 +32,16 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="fileType">File Type</label>
-            <input name="fileType" id="fileType" type="text" class="form-control"[(ngModel)]="fileType" required>
+            <input name="fileType" id="fileType" type="text" class="form-control" [(ngModel)]="fileType" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="fileType">Seelct User to share with</label>
+            <select class="form-control" name="cars" id="cars" [(ngModel)]="uploadedTo">
+              <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
+            </select>
           </div>
         </div>
+
         <div class="form-group">
           <label for="fileDescription">Description</label>
           <textarea name="fileDescription" id="fileDescription"  class="form-control" [(ngModel)]="fileDescription" required rows="3"></textarea>

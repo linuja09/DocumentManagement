@@ -18,6 +18,8 @@ class CreateDocumentsTable extends Migration
             $table->string('fileName');
             $table->string('fileType');
             $table->string('fileDescription');
+            $table->integer('uploadedBy');
+            $table->integer('uploadedTo');
             $table->uuid('uuid')->nullable();
             $table->timestamps();
         });

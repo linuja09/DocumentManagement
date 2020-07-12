@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Uuid;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
@@ -17,14 +19,22 @@ class DocumentController extends Controller
         return response()->download($pathToFile);
     }
 
+    public function getAllUsers () {
+        $posts = User::all();
+        return $posts;
+    }
+
     public function store(Request $request)
     {
 
+        $user =  Auth::user();
+
         try {
             $document = $request->all();
+            $document['uploadedBy'] = $user->id;
             $document['uuid'] = (string)Uuid::generate();
-            if ($request->hasFile('fileContent')) {
 
+            if ($request->hasFile('fileContent')) {
                 $document['fileContent'] = $request->fileContent->getClientOriginalName();
                 $request->fileContent->storeAs('documents', $document['fileContent']);
             }

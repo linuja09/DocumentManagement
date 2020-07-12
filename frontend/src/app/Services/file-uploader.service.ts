@@ -13,7 +13,11 @@ export class FileUploaderService {
     private http: HttpClient
   ) { }
 
-  public upload(data, userId) {
+  public getUsers() {
+    return this.http.get( `${this.baseUrl}/getAllUsers`)
+  }
+
+  public upload(data) {
     let uploadURL = `${this.baseUrl}/uploadFile`;
 
     return this.http.post(uploadURL, data, {

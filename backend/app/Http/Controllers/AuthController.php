@@ -92,4 +92,8 @@ class AuthController extends Controller
             'user' => auth()->user()->name
         ]);
     }
+
+    public function getAllUsers () {
+        return User::all();
+    }
 }
