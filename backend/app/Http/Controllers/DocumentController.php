@@ -24,6 +24,13 @@ class DocumentController extends Controller
         return $posts;
     }
 
+    public function getAllDocsforUser () {
+        $user = Auth::user();
+        $documents = Document::where('uploadedBy', $user->id)->get();
+        return $documents;
+
+    }
+
     public function store(Request $request)
     {
 
@@ -31,7 +38,7 @@ class DocumentController extends Controller
 
         try {
             $document = $request->all();
-            $document['uploadedBy'] = $user->id;
+            $document['uploadedBy'] = strval($user->id);
             $document['uuid'] = (string)Uuid::generate();
 
             if ($request->hasFile('fileContent')) {

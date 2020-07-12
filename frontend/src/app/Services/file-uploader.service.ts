@@ -17,6 +17,16 @@ export class FileUploaderService {
     return this.http.get( `${this.baseUrl}/getAllUsers`)
   }
 
+  public getUserDocuments(token) {
+    const formData = new FormData();
+    formData.append('token', token);
+    return this.http.post( `${this.baseUrl}/getAllUserDocuments`, formData);
+  }
+
+  public getResource(id): string{
+    return (`${this.baseUrl}/documents/${id}/download`);
+  }
+
   public upload(data) {
     let uploadURL = `${this.baseUrl}/uploadFile`;
 

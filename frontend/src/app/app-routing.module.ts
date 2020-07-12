@@ -1,3 +1,4 @@
+import { NotificationsComponent } from './notifications/notifications.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { GuestGuard } from './guards/guest.guard';
@@ -44,6 +45,11 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomeComponent,
+    canActivate : [AuthenticatedGuard]
+  },
+  {
+    path : 'notifications',
+    component : NotificationsComponent,
     canActivate : [AuthenticatedGuard]
   }
 ];

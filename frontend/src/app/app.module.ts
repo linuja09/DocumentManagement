@@ -14,6 +14,7 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 
@@ -26,7 +27,8 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     ProfileComponent,
     RequestResetComponent,
     ResponseResetComponent,
-    HomeComponent
+    HomeComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

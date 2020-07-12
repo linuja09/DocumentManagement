@@ -1,16 +1,21 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-dark bg-dark">
 
-    <a class="navbar-brand">Navbar</a>
+    <a class="navbar-brand" href="/">Document Management</a>
+
+    <a type="button" class="btn btn-primary ml-auto" routerLink="/notifications">
+      <!-- Todo get the notification count -->
+      Notifications <span class="badge badge-light">4</span>
+    </a>
 
     <div>
 
-        <a class="navbar-brand" *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+        <a class="nav-item" *ngIf="!isLoggedIn" routerLink="/login">Login</a>
 
-        <a class="navbar-brand" *ngIf="isLoggedIn" routerLink="home">Home</a>
+        <a class="nav-item" *ngIf="isLoggedIn" routerLink="home">Home</a>
 
-        <a class="navbar-brand" *ngIf="isLoggedIn" routerLink="profile">Profile</a>
+        <a class="nav-item" *ngIf="isLoggedIn" routerLink="profile">Profile</a>
 
-        <a class="navbar-brand" *ngIf="isLoggedIn" href="#" (click)="handleLogout($event)">Logout</a>
+        <a class="nav-item" *ngIf="isLoggedIn" href="#" (click)="handleLogout($event)">Logout</a>
 
     </div>
 

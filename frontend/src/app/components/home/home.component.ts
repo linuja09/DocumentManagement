@@ -20,23 +20,33 @@ export class HomeComponent implements OnInit {
   uploadResponse;
 
   users;
+  userDocs;
 
 
   constructor(
     private uploadService: FileUploaderService,
     private cd: ChangeDetectorRef,
-    private tokenService: TokenService
+    private tokenService: TokenService,
   ) { }
 
   ngOnInit(): void {
     this.uploadService.getUsers().subscribe(
       data => this.users = data
     )
+    this.uploadService.getUserDocuments(this.tokenService.get()).subscribe(
+      data => {
+        this.userDocs = data;
+        console.log(data);
+      }
+    )
+  }
+
+  getFileLink(fileID){
+    return this.uploadService.getResource(fileID);
   }
 
   onSelectImage(event) {
     this.fileContent = event.srcElement.files[0];
-    console.log(this.fileContent)
   }
   handleFileUpload() {
     const uploadData = new FormData();
@@ -45,15 +55,12 @@ export class HomeComponent implements OnInit {
     uploadData.append('fileDescription', this.fileDescription);
     uploadData.append('fileType', this.fileType);
     uploadData.append('token', this.tokenService.get());
-    uploadData.append('uploadedTo', this.tokenService.get());
+    uploadData.append('uploadedTo', this.uploadedTo);
 
-
-    console.log(uploadData)
-
-    // this.uploadService.upload(uploadData).subscribe(
-    //   (res) => this.uploadResponse = res,
-    //   (err) => this.error = err
-    // );
+    this.uploadService.upload(uploadData).subscribe(
+      (res) => this.uploadResponse = res,
+      (err) => this.error = err
+    );
 
   }
 
