@@ -1,3 +1,6 @@
+import { HomeComponent } from './components/home/home.component';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { GuestGuard } from './guards/guest.guard';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
@@ -9,24 +12,39 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     path : 'login',
-    component : LoginComponent
+    component : LoginComponent,
+    canActivate : [GuestGuard]
   },
   {
     path : 'signup',
-    component : SignupComponent
+    component : SignupComponent,
+    canActivate : [GuestGuard]
   },
   {
     path : 'profile',
-    component : ProfileComponent
+    component : ProfileComponent,
+    canActivate : [AuthenticatedGuard]
   },
   {
     path : 'request-password-reset',
-    component : RequestResetComponent
+    component : RequestResetComponent,
+    canActivate : [GuestGuard]
   },
   {
     path : 'response-password-reset',
-    component : ResponseResetComponent
+    component : ResponseResetComponent,
+    canActivate : [GuestGuard]
+  },
+  {
+    path : 'home',
+    component : HomeComponent,
+    canActivate : [AuthenticatedGuard]
   }
 ];
 

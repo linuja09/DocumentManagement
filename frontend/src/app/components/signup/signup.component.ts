@@ -1,5 +1,8 @@
+import { TokenService } from './../../Services/token.service';
+import { AuthService } from './../../Services/auth.service';
 import { SignupService } from './../../Services/signup.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +20,12 @@ export class SignupComponent implements OnInit {
   public error_email = null;
   public error_password = null;
 
-  constructor(private Signup : SignupService) { }
+  constructor(
+    private Signup : SignupService,
+    private authService: AuthService,
+    private router: Router,
+    private tokenService: TokenService,
+    ) { }
 
   handleError(error) {
     this.error_name = error.error.errors.name;
@@ -43,13 +51,19 @@ export class SignupComponent implements OnInit {
 
     this.Signup.signup(temp).subscribe(
       (response) => {
-        console.log(response)
+        this.handleResponse(response);
       },
       (error) => {
-        this.handleError(error)
+        this.handleError(error);
       }
     )
 
+  }
+
+  handleResponse(data) {
+    this.tokenService.handle(data.access_token);
+    this.authService.changeAuthStatus(true);
+    this.router.navigateByUrl("/profile")
   }
 
   ngOnInit(): void {

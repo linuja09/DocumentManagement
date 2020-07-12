@@ -10,12 +10,20 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
-  login(temp) {
-    return this.http.post(`${this.baseUrl}/login`, temp)
+  login(data) {
+    return this.http.post(`${this.baseUrl}/login`, data)
   }
 
-  signup(temp) {
-    return this.http.post(`${this.baseUrl}/signup`, temp)
+  signup(data) {
+    return this.http.post(`${this.baseUrl}/signup`, data)
+  }
+
+  sendPasswordResetLink(data) {
+    return this.http.post(`${this.baseUrl}/resetPasswordEmail`, data)
+  }
+
+  changePassword(data) {
+    return this.http.post(`${this.baseUrl}/resetPassword`, data)
   }
 
 }

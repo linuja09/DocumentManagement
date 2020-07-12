@@ -1,7 +1,10 @@
+import { AuthService } from './../../Services/auth.service';
 import { TokenService } from './../../Services/token.service';
 import { SignupService } from './../../Services/signup.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +18,10 @@ export class LoginComponent implements OnInit {
 
   public error = null;
   constructor(
-    private Signup : SignupService,
-    private Token : TokenService
+    private signup : SignupService,
+    private token : TokenService,
+    private router : Router,
+    private authService : AuthService
     ) { }
 
   ngOnInit(): void {
@@ -28,14 +33,16 @@ export class LoginComponent implements OnInit {
       password: this.password,
     }
     console.log(temp);
-    this.Signup.login(temp).subscribe(
+    this.signup.login(temp).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
   }
 
   handleResponse(data) {
-    this.Token.handle(data.access_token);
+    this.token.handle(data.access_token);
+    this.authService.changeAuthStatus(true);
+    this.router.navigateByUrl("/")
   }
 
   handleError(error) {

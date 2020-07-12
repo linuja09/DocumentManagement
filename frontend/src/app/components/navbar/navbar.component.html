@@ -4,9 +4,13 @@
 
     <div>
 
-        <a class="navbar-brand" routerLink="/login">Login</a>
+        <a class="navbar-brand" *ngIf="!isLoggedIn" routerLink="/login">Login</a>
 
-        <a class="navbar-brand" routerLink="profile">Peofile</a>
+        <a class="navbar-brand" *ngIf="isLoggedIn" routerLink="home">Home</a>
+
+        <a class="navbar-brand" *ngIf="isLoggedIn" routerLink="profile">Profile</a>
+
+        <a class="navbar-brand" *ngIf="isLoggedIn" href="#" (click)="handleLogout($event)">Logout</a>
 
     </div>
 

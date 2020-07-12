@@ -1,3 +1,5 @@
+import { TokenService } from './../../Services/token.service';
+import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  public isLoggedIn: boolean;
+
+  constructor(
+    private authService : AuthService,
+    private tokenService : TokenService
+  ) { }
 
   ngOnInit(): void {
+    this.authService.authStatus.subscribe(value => this.isLoggedIn = value);
+  }
+
+  handleLogout(event: MouseEvent): void {
+    event.stopPropagation();
+    this.authService.changeAuthStatus(false);
+    this.tokenService.remove();
   }
 
 }
