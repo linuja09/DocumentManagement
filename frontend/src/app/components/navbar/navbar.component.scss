@@ -5,5 +5,23 @@
   &:hover{
     text-decoration: none;
     opacity: 0.8;
+
   }
+}
+
+.notification{
+  color: #fff;
+  margin-right: 20px;
+  position: relative;
+}
+.custom-badge{
+  border-radius: 8px;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: -4px;
+  font-size: 10px;
+  line-height: 12px;
+  right: -16px;
+  text-align: center;
 }

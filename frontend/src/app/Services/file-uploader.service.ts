@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angular/common/http';
+import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpHeaders } from  '@angular/common/http';
 import { map } from  'rxjs/operators';
 
 @Injectable({
@@ -25,8 +25,9 @@ export class FileUploaderService {
     return this.http.get( `${this.baseUrl}/getAllDocsUploadedToUser`);
   }
 
-  public getResource(id): string{
-    return (`${this.baseUrl}/documents/${id}/download`);
+  public getResource(id){
+    const headers = new HttpHeaders();
+    return this.http.get(`${this.baseUrl}/documents/${id}/download`, { headers, responseType: 'blob'});
   }
 
   public upload(data) {

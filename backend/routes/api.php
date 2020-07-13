@@ -25,6 +25,7 @@ Route::group([
 
     // Documents Download Routes
     Route::resource('documents', 'DocumentController');
+    //Route::get('documents/{uuid}/download', 'DocumentController@download')->name('documents.download');
     Route::get('documents/{uuid}/download', 'DocumentController@download')->name('documents.download');
 
     //Notifications Routes
