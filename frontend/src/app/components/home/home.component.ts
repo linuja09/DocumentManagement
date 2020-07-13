@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   users;
   userDocs;
+  recievedDocs;
 
 
   constructor(
@@ -29,16 +30,31 @@ export class HomeComponent implements OnInit {
     private tokenService: TokenService,
   ) { }
 
+
+  getUserDoc() {
+    this.uploadService.getUserDocuments(this.tokenService.get()).subscribe(
+      data => {
+        this.userDocs = data;
+      }
+    )
+  }
+
+  getDocUploadedToUser() {
+    this.uploadService.getAllDocsUploadedToUser(this.tokenService.get()).subscribe(
+      data => {
+        this.recievedDocs = data;
+      }
+    )
+  }
+
   ngOnInit(): void {
     this.uploadService.getUsers().subscribe(
       data => this.users = data
     )
-    this.uploadService.getUserDocuments(this.tokenService.get()).subscribe(
-      data => {
-        this.userDocs = data;
-        console.log(data);
-      }
-    )
+
+    this.getUserDoc();
+    this.getDocUploadedToUser();
+
   }
 
   getFileLink(fileID){
@@ -58,7 +74,10 @@ export class HomeComponent implements OnInit {
     uploadData.append('uploadedTo', this.uploadedTo);
 
     this.uploadService.upload(uploadData).subscribe(
-      (res) => this.uploadResponse = res,
+      (res) => {
+        this.uploadResponse = res
+        this.getUserDoc();
+      },
       (err) => this.error = err
     );
 

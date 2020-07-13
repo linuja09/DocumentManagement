@@ -1,4 +1,4 @@
-import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { GuestGuard } from './guards/guest.guard';

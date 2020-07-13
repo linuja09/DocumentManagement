@@ -1,0 +1,15 @@
+<h3 class="my-4">Your Notifications</h3>
+
+<div class="card">
+  <div class="card-body">
+    <div class="alert alert-primary" role="alert" *ngFor="let notification of notifications">
+      <b>{{notification.title}}</b>
+      <div>
+        {{notification.message}}
+      </div>
+      <div class="d-flex mt-2">
+        <a href="{{getFileLink(notification.docID)}}" class="btn btn-outline-info ml-auto">Download</a>
+      </div>
+    </div>
+  </div>
+</div>

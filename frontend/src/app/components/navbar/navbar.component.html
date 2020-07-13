@@ -2,9 +2,9 @@
 
     <a class="navbar-brand" href="/">Document Management</a>
 
-    <a type="button" class="btn btn-primary ml-auto" routerLink="/notifications">
+    <a type="button" class="btn btn-primary ml-auto" *ngIf="isLoggedIn" routerLink="/notifications">
       <!-- Todo get the notification count -->
-      Notifications <span class="badge badge-light">4</span>
+      Notifications <span class="badge badge-light" *ngIf="notificationNumber.length > 0">{{notificationNumber.length}}</span>
     </a>
 
     <div>

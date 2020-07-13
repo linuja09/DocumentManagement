@@ -23,6 +23,12 @@ export class FileUploaderService {
     return this.http.post( `${this.baseUrl}/getAllUserDocuments`, formData);
   }
 
+  public getAllDocsUploadedToUser(token) {
+    const formData = new FormData();
+    formData.append('token', token);
+    return this.http.post( `${this.baseUrl}/getAllDocsUploadedToUser`, formData);
+  }
+
   public getResource(id): string{
     return (`${this.baseUrl}/documents/${id}/download`);
   }

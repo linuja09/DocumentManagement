@@ -1,3 +1,4 @@
+import { NotificationService } from './../../Services/notification.service';
 import { AuthService } from './../../Services/auth.service';
 import { TokenService } from './../../Services/token.service';
 import { SignupService } from './../../Services/signup.service';
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private signup : SignupService,
     private token : TokenService,
     private router : Router,
-    private authService : AuthService
+    private authService : AuthService,
+    private notificationService : NotificationService
     ) { }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
   handleResponse(data) {
     this.token.handle(data.access_token);
     this.authService.changeAuthStatus(true);
+    this.notificationService.getActiveNotificationsCount(data.access_token);
     this.router.navigateByUrl("/")
   }
 
