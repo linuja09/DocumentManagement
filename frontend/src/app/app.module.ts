@@ -12,9 +12,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { TokenInterceptor } from './Interceptors/token.interceptor';
 
 
 
@@ -28,7 +30,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     RequestResetComponent,
     ResponseResetComponent,
     HomeComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,11 @@ import { NotificationsComponent } from './components/notifications/notifications
   providers: [
     SignupService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
-    SnotifyService
+    SnotifyService,
+    {  provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+   },
   ],
   bootstrap: [AppComponent]
 })

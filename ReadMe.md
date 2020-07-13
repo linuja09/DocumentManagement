@@ -4,6 +4,19 @@ The repository has 2 directories
   - backend
   - frontend
 
+
+# To Seed the Database
+
+  - cd into the backend folder
+  - run composer dump-autoload
+  - run php artisan migrate:fresh --seed
+
+```sh
+$ cd backend
+$ composer dump-autoload
+$ php artisan migrate:fresh --seed
+```
+
 # To run the backend locally
 
   - cd into the backend folder

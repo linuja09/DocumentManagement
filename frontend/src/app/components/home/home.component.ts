@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
 
   getUserDoc() {
-    this.uploadService.getUserDocuments(this.tokenService.get()).subscribe(
+    this.uploadService.getUserDocuments().subscribe(
       data => {
         this.userDocs = data;
       }
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   getDocUploadedToUser() {
-    this.uploadService.getAllDocsUploadedToUser(this.tokenService.get()).subscribe(
+    this.uploadService.getAllDocsUploadedToUser().subscribe(
       data => {
         this.recievedDocs = data;
       }
@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
     uploadData.append('fileName', this.fileContent.name );
     uploadData.append('fileDescription', this.fileDescription);
     uploadData.append('fileType', this.fileType);
-    uploadData.append('token', this.tokenService.get());
     uploadData.append('uploadedTo', this.uploadedTo);
 
     this.uploadService.upload(uploadData).subscribe(

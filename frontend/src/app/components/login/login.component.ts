@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
   handleResponse(data) {
     this.token.handle(data.access_token);
     this.authService.changeAuthStatus(true);
+    this.authService.setAdminStatus(data.isAdmin);
     this.notificationService.getActiveNotificationsCount(data.access_token);
     this.router.navigateByUrl("/")
   }
