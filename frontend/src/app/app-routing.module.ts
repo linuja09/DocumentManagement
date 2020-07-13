@@ -1,3 +1,4 @@
+import { AdminComponent } from './components/admin/admin.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path : 'notifications',
     component : NotificationsComponent,
+    canActivate : [AuthenticatedGuard]
+  },
+  {
+    path : 'admin',
+    component : AdminComponent,
     canActivate : [AuthenticatedGuard]
   }
 ];

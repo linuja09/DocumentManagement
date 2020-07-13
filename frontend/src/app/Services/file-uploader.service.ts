@@ -17,16 +17,12 @@ export class FileUploaderService {
     return this.http.get( `${this.baseUrl}/getAllUsers`)
   }
 
-  public getUserDocuments(token) {
-    const formData = new FormData();
-    formData.append('token', token);
-    return this.http.post( `${this.baseUrl}/getAllUserDocuments`, formData);
+  public getUserDocuments() {
+    return this.http.get( `${this.baseUrl}/getAllUserDocuments`);
   }
 
-  public getAllDocsUploadedToUser(token) {
-    const formData = new FormData();
-    formData.append('token', token);
-    return this.http.post( `${this.baseUrl}/getAllDocsUploadedToUser`, formData);
+  public getAllDocsUploadedToUser() {
+    return this.http.get( `${this.baseUrl}/getAllDocsUploadedToUser`);
   }
 
   public getResource(id): string{

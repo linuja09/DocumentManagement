@@ -15,18 +15,22 @@ Route::group([
     Route::post('resetPasswordEmail', 'ResetPasswordController@sendResetPasswordEmail');
     Route::post('resetPassword', 'ResetPasswordController@resetPassword');
 
+
     // Documents Routes
     Route::post('uploadFile', 'DocumentController@store');
     Route::get('getAllUsers', 'DocumentController@getAllUsers');
-    Route::post('getAllUserDocuments', 'DocumentController@getAllDocsforUser');
-    Route::post('getAllDocsUploadedToUser', 'DocumentController@getAllDocsUploadedToUser');
+    Route::get('getAllUserDocuments', 'DocumentController@getAllDocsforUser');
+    Route::get('getAllDocsUploadedToUser', 'DocumentController@getAllDocsUploadedToUser');
 
     // Documents Download Routes
     Route::resource('documents', 'DocumentController');
     Route::get('documents/{uuid}/download', 'DocumentController@download')->name('documents.download');
 
     //Notifications Routes
-    Route::post('getAllUserNotifications', 'NotificationController@getAllNotificationsToUser');
-    Route::post('getActiveUserNotifications', 'NotificationController@getActiveNotificationsToUser');
-    Route::post('updateNotifications', 'NotificationController@updateNotifications');
+    Route::get('getAllUserNotifications', 'NotificationController@getAllNotificationsToUser');
+    Route::get('getActiveUserNotifications', 'NotificationController@getActiveNotificationsToUser');
+    Route::get('updateNotifications', 'NotificationController@updateNotifications');
+
+    //Admin Routes
+    Route::get('testAdmin', 'AdminController@testAdmin');
 });

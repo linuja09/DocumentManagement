@@ -20,10 +20,7 @@ export class NotificationService {
   ) {}
 
   public getActiveNotifications() {
-    const formData = new FormData();
-    let token =this.tokenService.get();
-    formData.append('token', token);
-    return this.http.post( `${this.baseUrl}/getActiveUserNotifications`, formData);
+    return this.http.get( `${this.baseUrl}/getActiveUserNotifications`);
   }
 
   setNotificationCount(count: any) {
@@ -31,12 +28,7 @@ export class NotificationService {
   }
 
   getActiveNotificationsCount(token?: any) {
-    const formData = new FormData();
-    if(!token){
-      token =this.tokenService.get();
-    }
-    formData.append('token', token);
-    this.http.post( `${this.baseUrl}/getActiveUserNotifications`, formData).subscribe(
+    this.http.get( `${this.baseUrl}/getActiveUserNotifications`).subscribe(
       data => {
         this.setNotificationCount(data)
       }
@@ -44,16 +36,10 @@ export class NotificationService {
   }
 
   public getAllNotifications() {
-    const formData = new FormData();
-    let token =this.tokenService.get();
-    formData.append('token', token);
-    return this.http.post( `${this.baseUrl}/getAllUserNotifications`, formData);
+    return this.http.get( `${this.baseUrl}/getAllUserNotifications`);
   }
 
   public updateNotifications() {
-    let token =this.tokenService.get();
-    const formData = new FormData();
-    formData.append('token', token);
-    return this.http.post( `${this.baseUrl}/updateNotifications`, formData);
+    return this.http.get( `${this.baseUrl}/updateNotifications`);
   }
 }
