@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 use Uuid;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use SoareCostin\FileVault\Facades\FileVault;
 
 class DocumentController extends Controller
 {
@@ -21,9 +24,15 @@ class DocumentController extends Controller
 
     public function download($uuid)
     {
+
         $doc = Document::where('uuid', $uuid)->firstOrFail();
-        $pathToFile = storage_path('app/documents/' . $doc->fileName);
-        return response()->download($pathToFile);
+        // $filename = storage_path('app/documents/' . $doc->fileName);
+        $filename = $doc->fileName;
+       // return response()->download($pathToFile);
+
+        return response()->streamDownload(function () use ($filename) {
+            FileVault::streamDecrypt('documents\\' . $filename . '.enc');
+        }, Str::replaceLast('.enc', '', $filename));
     }
 
     public function getAllUsers () {
@@ -56,7 +65,11 @@ class DocumentController extends Controller
 
             if ($request->hasFile('fileContent')) {
                 $document['fileContent'] = $request->fileContent->getClientOriginalName();
-                $request->fileContent->storeAs('documents', $document['fileContent']);
+                $filename = $request->fileContent->storeAs('documents', $document['fileContent']);
+
+                if ($filename) {
+                    FileVault::encrypt($filename);
+                }
             }
             Document::create($document);
 
