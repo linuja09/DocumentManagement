@@ -60,7 +60,6 @@ export class HomeComponent implements OnInit {
   getFileLink(fileID, fileName){
      this.uploadService.getResource(fileID).subscribe(
         data => {
-          console.log('hhhhh')
           this.downLoadFile(data, fileName)
         },
         err => console.log(err)
@@ -68,9 +67,7 @@ export class HomeComponent implements OnInit {
   }
 
   downLoadFile(data: any, fileName) {
-    console.log(data)
     let blob = new Blob([data], { type: "application/octet-stream" });
-    let url = window.URL.createObjectURL(blob);
     saveAs(blob, fileName);
 }
 

@@ -24,11 +24,8 @@ class DocumentController extends Controller
 
     public function download($uuid)
     {
-
         $doc = Document::where('uuid', $uuid)->firstOrFail();
-        // $filename = storage_path('app/documents/' . $doc->fileName);
         $filename = $doc->fileName;
-       // return response()->download($pathToFile);
 
         return response()->streamDownload(function () use ($filename) {
             FileVault::streamDecrypt('documents\\' . $filename . '.enc');
