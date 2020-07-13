@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   public isLoggedIn: boolean;
+  public isAdmin: boolean;
   public notificationNumber;
 
   constructor(
@@ -36,11 +37,16 @@ export class NavbarComponent implements OnInit {
       }
       );
 
+      this.authService.isAdmin.subscribe(
+        value => this.isAdmin = value
+      )
+
   }
 
   handleLogout(event: MouseEvent): void {
     event.stopPropagation();
     this.authService.changeAuthStatus(false);
+    this.authService.setAdminStatus(false);
     this.tokenService.remove();
   }
 

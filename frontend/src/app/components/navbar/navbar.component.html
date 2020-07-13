@@ -17,7 +17,7 @@
 
         <a class="nav-item" *ngIf="isLoggedIn" href="#" (click)="handleLogout($event)">Logout</a>
 
-        <a class="nav-item" *ngIf="isLoggedIn" routerLink="admin">Admin</a>
+        <a class="nav-item" *ngIf="isAdmin" routerLink="admin">Admin</a>
 
     </div>
 

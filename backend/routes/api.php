@@ -14,6 +14,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
     Route::post('resetPasswordEmail', 'ResetPasswordController@sendResetPasswordEmail');
     Route::post('resetPassword', 'ResetPasswordController@resetPassword');
+    Route::get('isAdmin', 'AuthController@isAdmin');
 
 
     // Documents Routes
@@ -33,4 +34,5 @@ Route::group([
 
     //Admin Routes
     Route::get('testAdmin', 'AdminController@testAdmin');
+
 });

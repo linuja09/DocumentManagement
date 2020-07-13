@@ -89,11 +89,16 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->name
+            'user' => auth()->user()->name,
+            'isAdmin' => auth()->user()->hasRole(['ADMIN'])
         ]);
     }
 
     public function getAllUsers () {
         return User::all();
+    }
+
+    public function isAdmin() {
+        return auth()->user()->hasRole(['ADMIN']);
     }
 }
