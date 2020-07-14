@@ -33,8 +33,8 @@ class DocumentController extends Controller
     }
 
     public function getAllUsers () {
-        $posts = User::all();
-        return $posts;
+        $users = User::all();
+        return $users;
     }
 
     public function getAllDocsforUser () {

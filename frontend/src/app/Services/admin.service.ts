@@ -11,8 +11,12 @@ export class AdminService {
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
-  testAdmin() {
-    return this.http.get( `${this.baseUrl}/testAdmin`);
+  getAllDocs() {
+    return this.http.get( `${this.baseUrl}/getAllDocs`);
+  }
+
+  getAllUsers() {
+    return this.http.get( `${this.baseUrl}/getAllUsers`);
   }
 
 }
