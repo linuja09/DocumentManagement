@@ -34,6 +34,7 @@ Route::group([
     Route::get('updateNotifications', 'NotificationController@updateNotifications');
 
     //Admin Routes
-    Route::get('testAdmin', 'AdminController@testAdmin');
+    Route::get('getAllDocs', 'AdminController@getAllDocs');
+    Route::get('getAllUsers', 'AdminController@getAllUsers');
 
 });

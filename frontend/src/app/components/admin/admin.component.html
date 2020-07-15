@@ -1,1 +1,55 @@
-<p>{{test}}</p>
+<div class="admin-container d-flex">
+  <div class="side-bar">
+    <!-- Todo: Add Side Menu -->
+  </div>
+  <div class="main-area">
+    <div class="stats">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="card-title text-right">Total Documents</h6>
+              <h4 class="text-center">{{allDocs?.length}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="card-title text-right">Total Users</h6>
+              <h4 class="text-center">{{allUsers?.length}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="all-docs mt-4 mb-5" *ngIf="allDocs">
+        <h4 class="mb-2">All Documents</h4>
+        <div class="alert alert-primary" role="alert" *ngFor="let doc of allDocs">
+          <div class="d-flex">
+            <span>
+              {{ doc.fileName }}
+            </span>
+            <button (click)="getFileLink(doc.uuid, doc.fileName)"
+              class="btn btn-outline-success ml-auto">Download</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="all-users mt-4 mb-5" *ngIf="allUsers">
+        <h4 class="mb-2">All Users</h4>
+        <div class="alert alert-success" role="alert" *ngFor="let user of allUsers">
+          <div class="">
+            <div>
+              <b>{{ user.name }}</b>
+            </div>
+            <small>{{user.email}}</small>
+          </div>
+
+          <!-- Todo: Add User Functions -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

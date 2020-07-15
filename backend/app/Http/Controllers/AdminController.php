@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +15,13 @@ class AdminController extends Controller
         $this->middleware('role:ADMIN');
     }
 
-    public function testAdmin() {
-        return "Test Admin";
+    public function getAllDocs () {
+        $documents = Document::all();
+        return $documents;
+    }
+
+    public function getAllUsers () {
+        $users = User::all();
+        return $users;
     }
 }

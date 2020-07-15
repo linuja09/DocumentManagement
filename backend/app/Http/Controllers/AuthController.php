@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Log;
 
 class AuthController extends Controller
 {
+
+    public static $CLIENT = '2';
     /**
      * Create a new AuthController instance.
      *
@@ -40,6 +43,9 @@ class AuthController extends Controller
     public function signup(SignUpRequest $request)
     {
         $user = User::create($request->all());
+
+        $data=array('role_id'=>self::$CLIENT, "user_id"=>$user->id);
+        DB::table('role_user')->insert($data);
 
         return $this->login($request);
     }
