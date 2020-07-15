@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
   handleResponse(data) {
     this.tokenService.handle(data.access_token);
     this.authService.changeAuthStatus(true);
-    this.router.navigateByUrl("/profile")
+    this.router.navigateByUrl("/home")
   }
 
   ngOnInit(): void {
